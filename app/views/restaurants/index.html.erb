@@ -1,0 +1,17 @@
+<h1>Restaurants</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th>
+  </tr>
+
+  <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= restaurant.name %></td>
+      <td><%= restaurant.rating %></td>
+      <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
+      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+    </tr>
+  <% end %>
+</table>
