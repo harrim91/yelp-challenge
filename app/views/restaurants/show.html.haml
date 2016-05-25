@@ -3,7 +3,15 @@
 
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 = link_to 'Delete', restaurant_path(@restaurant), method: :delete
-= link_to 'Leave Review', new_restaurant_review_path(@restaurant)
+
+= form_for [@restaurant, @restaurant.reviews.build] do |f|
+  = f.label :rating
+  = f.number_field :rating, in: 1..5
+
+  = f.label :comment
+  = f.text_area :comment
+
+  = f.submit 'Leave Review'
 
 %h2 Reviews
 %table{id:'reviews', border: 1}

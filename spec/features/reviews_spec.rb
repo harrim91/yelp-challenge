@@ -8,7 +8,6 @@ RSpec.feature 'Reviews', type: :feature do
 
   scenario 'allows users to leave a review' do
     visit restaurant_path(mms)
-    click_link 'Leave Review'
     fill_in :Rating, with: '5'
     fill_in :Comment, with: 'I can\'t move'
     click_button 'Leave Review'
