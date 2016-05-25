@@ -1,0 +1,13 @@
+- if @restaurants.empty?
+  %p No restaurants found
+- else
+  %table{border: 1}
+    %tr
+      %th Name
+      %th Rating
+    - @restaurants.each do |restaurant|
+      %tr
+        %td= link_to restaurant.name, restaurant_path(restaurant)
+        %td= restaurant.rating
+
+= link_to 'Add Restaurant', new_restaurant_path

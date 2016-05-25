@@ -3,12 +3,14 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  def new
+  def show
+    @restaurant = Restaurant.find params[:id]
+  end
 
+  def new
   end
 
   def create
-    p params
     Restaurant.create(restaurant_params)
     redirect_to '/restaurants'
   end
