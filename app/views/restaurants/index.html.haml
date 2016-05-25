@@ -4,10 +4,10 @@
   %table{border: 1}
     %tr
       %th Name
-      %th Rating
+      %th Description
     - @restaurants.each do |restaurant|
       %tr
         %td= link_to restaurant.name, restaurant_path(restaurant)
-        %td= restaurant.rating
+        %td= restaurant.description
 
 = link_to 'Add Restaurant', new_restaurant_path

@@ -1,2 +1,4 @@
 %h1= @restaurant.name
-%h2 Rating: #{@restaurant.rating}
+%p= @restaurant.description
+= link_to 'Edit', edit_restaurant_path(@restaurant)
+= link_to 'Delete', restaurant_path(@restaurant), method: :delete
