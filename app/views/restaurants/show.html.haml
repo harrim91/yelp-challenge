@@ -1,4 +1,16 @@
 %h1= @restaurant.name
 %p= @restaurant.description
+
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 = link_to 'Delete', restaurant_path(@restaurant), method: :delete
+= link_to 'Leave Review', new_restaurant_review_path(@restaurant)
+
+%h2 Reviews
+%table{id:'reviews', border: 1}
+  %tr
+    %th Comment
+    %th Rating
+  - @restaurant.reviews.each do |review|
+    %tr
+      %td= review.comment
+      %td= review.rating
