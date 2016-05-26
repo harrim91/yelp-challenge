@@ -113,7 +113,8 @@ RSpec.feature 'Restaurants', type: :feature do
     end
 
     context 'adding a duplicate restaurant' do
-      it 'does not let you submit a duplicate name' do
+
+      scenario 'does not let you submit a duplicate name' do
         visit restaurants_path
         click_link 'Add Restaurant'
         fill_in :Name , with: 'Michael\'s Mac Shack'
@@ -123,6 +124,7 @@ RSpec.feature 'Restaurants', type: :feature do
         visit restaurants_path
         expect(page).to have_css 'td.restaurant_name', text: 'Michael\'s Mac Shack', count: 1
       end
+
     end
 
   end
