@@ -28,6 +28,29 @@ RSpec.feature 'Restaurants', type: :feature do
       end
     end
 
+    context 'an invalid restaurant' do
+      scenario 'does not let you submit a name that is too short' do
+        visit restaurants_path
+        click_link 'Add Restaurant'
+        fill_in :Name , with: 'aa'
+        fill_in :Description, with: 'This is a description'
+        click_button 'Add'
+        within('section#errors') { expect(page).to have_content 'Error' }
+        visit restaurants_path
+        expect(page).not_to have_css 'td', text: 'aa'
+      end
+
+      scenario 'does not let you submit a restaurant with no description' do
+        visit restaurants_path
+        click_link 'Add Restaurant'
+        fill_in :Name , with: 'Macey\'s Meatballs'
+        click_button 'Add'
+        within('section#errors') { expect(page).to have_content 'Error' }
+        visit restaurants_path
+        expect(page).not_to have_css 'td', text: 'Macey\'s Meatballs'
+      end
+    end
+
   end
 
   context 'restaurants have been added' do
@@ -87,6 +110,19 @@ RSpec.feature 'Restaurants', type: :feature do
         expect(page).not_to have_content 'Michael\'s Mac Shack'
       end
 
+    end
+
+    context 'adding a duplicate restaurant' do
+      it 'does not let you submit a duplicate name' do
+        visit restaurants_path
+        click_link 'Add Restaurant'
+        fill_in :Name , with: 'Michael\'s Mac Shack'
+        fill_in :Description, with: 'This is a description'
+        click_button 'Add'
+        within('section#errors') { expect(page).to have_content 'Error' }
+        visit restaurants_path
+        expect(page).to have_css 'td.restaurant_name', text: 'Michael\'s Mac Shack', count: 1
+      end
     end
 
   end

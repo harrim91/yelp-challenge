@@ -7,7 +7,7 @@
       %th Description
     - @restaurants.each do |restaurant|
       %tr
-        %td= link_to restaurant.name, restaurant_path(restaurant)
-        %td= restaurant.description
+        %td.restaurant_name= link_to restaurant.name, restaurant_path(restaurant)
+        %td.restaurant_description= restaurant.description
 
 = link_to 'Add Restaurant', new_restaurant_path
